@@ -1,7 +1,7 @@
 
 # append these lines to your ~/.bashrc 
 # this should work in most cases:
-# cat append_to_bashrc.sh >> ~/.bashrc
+# cat append-to-bashrc.sh >> ~/.bashrc
 
 # if this is an interactive shell...
 if tty
