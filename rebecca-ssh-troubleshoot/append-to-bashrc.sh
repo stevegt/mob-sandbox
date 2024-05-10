@@ -3,12 +3,17 @@
 # this should work in most cases:
 # cat append-to-bashrc.sh >> ~/.bashrc
 
+# first assume there's already an ssh agent running and our
+# environment variables in the ~/.ssh-agent-env file are still valid
+# (the ssh-add -l below will detect if this is not the case)
+[ -f ~/.ssh-agent-env ] && . ~/.ssh-agent-env > /dev/null
+
 # if this is an interactive shell...
 if tty
 then
-    # show the current ssh-agent environment ( this is optional )
-    env | grep SSH
-    # if there is no ssh-agent running...
+    # if there is no ssh-agent running or our environment variables
+    # are invalid (e.g. the agent has been killed or the machine has
+    # been rebooted)...
     if ! ssh-add -l
     then
         # start a new ssh-agent and save the environment
@@ -21,12 +26,6 @@ then
         # add your default key to the agent (this is what prompts for your
         # passphrase the first time you open a shell)
         ssh-add
-    else
-        # there is already an ssh-agent running, just load the environment
-        # from the saved file
-        [ -f ~/.ssh-agent-env ] && . ~/.ssh-agent-env > /dev/null
-        # show the keys in the agent ( this is optional )
-        ssh-add -l
     fi
 fi
 
