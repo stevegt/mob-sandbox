@@ -6,7 +6,7 @@
 # first assume there's already an ssh agent running and our
 # environment variables in the ~/.ssh-agent-env file are still valid
 # (the ssh-add -l below will detect if this is not the case)
-[ -f ~/.ssh-agent-env ] && . ~/.ssh-agent-env > /dev/null
+[ -f ~/.ssh-agent-env ] && . ~/.ssh-agent-env 
 
 # if this is an interactive shell...
 if tty
