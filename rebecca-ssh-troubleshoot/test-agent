@@ -2,5 +2,11 @@
 
 env | grep SSH
 
+echo "running git pull"
 git pull
+echo "git pull rc: $?"
+
+echo "mob start"
+mob start
+echo "mob start rc: $?"
 
