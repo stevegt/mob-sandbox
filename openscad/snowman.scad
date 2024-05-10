@@ -21,24 +21,31 @@ hatTopDia = hatBrimDia * 0.6;
 // hat Z is on top of top sphere
 hatZ = topZ + topDia/2 - hatBrimHeight;
 
-// top hat on top of top sphere
-translate([0,0,hatZ]) {
-    cylinder(d=hatBrimDia,h=hatBrimHeight);
-    cylinder(d=hatTopDia,h=hatHeight);
-}
+module snowman() {
+    // top hat on top of top sphere
+    translate([0,0,hatZ]) {
+        cylinder(d=hatBrimDia,h=hatBrimHeight);
+        cylinder(d=hatTopDia,h=hatHeight);
+    }
 
 
-// bottom sphere
-translate([0,0,bottomZ]) {
-    sphere(d=bottomDia);
+    // bottom sphere
+    translate([0,0,bottomZ]) {
+        sphere(d=bottomDia);
+    }
+
+    // middle sphere on top of bottom sphere
+    translate([0,0,middleZ]) {
+        sphere(d=middleDia);
+    }
+
+    // top sphere on top of middle sphere
+    translate([0,0,topZ]) {
+        sphere(d=topDia);
+    }
 }
 
-// middle sphere on top of bottom sphere
-translate([0,0,middleZ]) {
-    sphere(d=middleDia);
+projection(cut=true) {
+    rotate([90,0,0]) snowman();
 }
 
-// top sphere on top of middle sphere
-translate([0,0,topZ]) {
-    sphere(d=topDia);
-}
